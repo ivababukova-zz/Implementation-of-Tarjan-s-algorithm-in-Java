@@ -1,5 +1,7 @@
 // a basic representation of a graph
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 public class Graph {
 
 	static class Edge{
@@ -30,6 +32,18 @@ public class Graph {
 			return name;
 		}
 	}
-	
-	
 }
+	/**
+	 *  using stack in Python:
+#def dfs(graph,start):
+#	path = []
+#	stack = [start]
+#	while stack!=[]:
+#		v = stack.pop()
+#		if v not in path:
+#			path.append(v)
+#		for w in reversed(graph[v]):
+#			if w not in path:
+#				stack.append(w)
+	 */
+
