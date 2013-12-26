@@ -2,48 +2,52 @@
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
-public class Graph {
-
-	static class Edge{
-		public final Node inNode;
-		public final Node outNode;
-		public Edge(Node inNode, Node outNode){
-			this.inNode = inNode;
-			this.outNode = outNode;			
+public class Graph extends Node{
+	
+	// fields
+	protected ArrayList<ArrayList<Node>> edges = new ArrayList<ArrayList<Node>>();
+	
+	// the constructor, edges are parameters
+	public Graph(ArrayList<ArrayList<Node>> edges){
+		this.edges = edges;
+		for(int i=0;i<edges.size();i++){
+			ArrayList<Node> edge = edges.get(i);		
+			if(!innodes.contains(edge.get(0))){
+					innodes.add(edge.get(0));
+			}
+			if(!outnodes.contains(edge.get(1))){
+				outnodes.add(edge.get(1));
+		    }
 		}
 	}
-	static class Node{
-		public final String name;
-		public final HashSet<Edge> inEdge;
-		public final HashSet<Edge> outEdge;
-		public Node(String name){
-			this.name = name;
-			this.inEdge = new HashSet<Edge>();
-			this.outEdge = new HashSet<Edge>();
-		}
-		public Node addEdge(Node node){
-			Edge edge = new Edge(this,node);
-			node.inEdge.add(edge);
-			outEdge.add(edge);
-			return this;
-		}
-		@Override
-		public String toString(){
-			return name;
-		}
+	//algorithms on graphs
+	
+	// depth first search:
+	public ArrayList<Node> dfs(Node startNode, ArrayList<Node> allNodes, ArrayList<ArrayList<Node>> allEdges){
+		ArrayList<Node> visited = new ArrayList<>(); // arraylist of all visited nodes
+		ArrayList<Node> remain = allNodes; // arraylist of nodes that are not visited
+		ArrayList<Node> path = new ArrayList<Node>(); 
+		Node current = startNode; // the node we are at the moment
+		while(remain.size()!=0){
+			visited.add(current);
+			remain.remove(current);
+			if(!path.contains(current)){
+				path.add(current);
+			}
+			// choose road - the first set of edges that satisfies the requirements: contain current as inEdge;
+			// delete the edge taken from the list;
+			// the second node in the edge taken is the new current node;
+			for(int i=0;i<allEdges.size();i++){
+				if(allEdges.get(i).get(0)==current){
+					current = allEdges.get(i).get(1);
+					allEdges.remove(allEdges.get(i));
+					break;
+				}
+			}
+		}		
+		return path;
 	}
-}
-	/**
-	 *  using stack in Python:
-#def dfs(graph,start):
-#	path = []
-#	stack = [start]
-#	while stack!=[]:
-#		v = stack.pop()
-#		if v not in path:
-#			path.append(v)
-#		for w in reversed(graph[v]):
-#			if w not in path:
-#				stack.append(w)
-	 */
+	}
+	
+	
 
