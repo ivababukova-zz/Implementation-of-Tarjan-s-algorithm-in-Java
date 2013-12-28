@@ -20,19 +20,6 @@ public class Graph{
 	
 	//algorithms on graphs
 	// depth first search:
-	/**
-	def dfs(graph,start):
-	path = []
-	stack = [start]
-	while stack!=[]:
-		v = stack.pop()
-		if v not in path:
-			path.append(v)
-		for w in reversed(graph[v]):
-			if w not in path:
-				stack.append(w)
-	return path
-	 */
 	public ArrayList<Node> dfs(Node startNode, HashMap<Node,ArrayList<Node>> nodeMap){
 		ArrayList<Node> visited = new ArrayList<>(); // arraylist of all visited nodes
 		Set<Node> remain = nodeMap.keySet(); // arraylist of nodes that are not visited
@@ -46,20 +33,18 @@ public class Graph{
 			}
 			// choose next current:
 			ArrayList<Node> currentAdjasent = nodeMap.get(current);
-			int thereis = 0;
+			int thereis = 0; // checker whether road that satisfies the conditions is found;
+			// search for next current node, chose which road to take(first possible);
 			for(int i=0;i<currentAdjasent.size();i++){
-				if(currentAdjasent.get(i) is outnode and it is not visited){ // PROBLEM: check whether it is outnode
-					mark it as current;
+				if((currentAdjasent.get(i) is outnode) &&(!visited.contains(currentAdjasent.get(i)))){ // PROBLEM: check whether it is outnode
+					current = currentAdjasent.get(i);
 					thereis = 1;
 					break;
 				}
 			}
 			if(thereis==0){
-				move one stage up;
-				go to other untaken road and choose other outnode as current;
+				current = visited.get(-1); // take the previous node and simply go through another road;
 			}
-			
-			
 		}		
 		return path;
 	}
