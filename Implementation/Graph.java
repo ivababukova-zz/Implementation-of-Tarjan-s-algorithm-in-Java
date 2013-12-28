@@ -1,49 +1,65 @@
 // a basic representation of a graph
 import java.util.ArrayList;
-import java.util.HashSet;
+import java.util.Collection;
+import java.util.HashMap;
 import java.util.List;
-public class Graph extends Node{
+import java.util.Set;
+public class Graph{
 	
 	// fields
-	protected ArrayList<ArrayList<Node>> edges = new ArrayList<ArrayList<Node>>();
+	protected HashMap<Node,ArrayList<Node>> nodeMap = new HashMap<>();
 	
 	// the constructor, edges are parameters
-	public Graph(ArrayList<ArrayList<Node>> edges){
-		this.edges = edges;
-		for(int i=0;i<edges.size();i++){
-			ArrayList<Node> edge = edges.get(i);		
-			if(!innodes.contains(edge.get(0))){
-					innodes.add(edge.get(0));
-			}
-			if(!outnodes.contains(edge.get(1))){
-				outnodes.add(edge.get(1));
-		    }
-		}
+	public Graph(HashMap<Node,ArrayList<Node>> nodeMap){
+		this.nodeMap = nodeMap;
 	}
-	//algorithms on graphs
 	
+	public Set<Node> getAllNodes(HashMap<Node,ArrayList<Node>> nodeMap){
+		return nodeMap.keySet();	
+	}
+	
+	//algorithms on graphs
 	// depth first search:
-	public ArrayList<Node> dfs(Node startNode, ArrayList<Node> allNodes, ArrayList<ArrayList<Node>> allEdges){
+	/**
+	def dfs(graph,start):
+	path = []
+	stack = [start]
+	while stack!=[]:
+		v = stack.pop()
+		if v not in path:
+			path.append(v)
+		for w in reversed(graph[v]):
+			if w not in path:
+				stack.append(w)
+	return path
+	 */
+	public ArrayList<Node> dfs(Node startNode, HashMap<Node,ArrayList<Node>> nodeMap){
 		ArrayList<Node> visited = new ArrayList<>(); // arraylist of all visited nodes
-		ArrayList<Node> remain = allNodes; // arraylist of nodes that are not visited
+		Set<Node> remain = nodeMap.keySet(); // arraylist of nodes that are not visited
 		ArrayList<Node> path = new ArrayList<Node>(); 
 		Node current = startNode; // the node we are at the moment
 		while(remain.size()!=0){
-			visited.add(current);
+			visited.add(current); // mark current as visited
 			remain.remove(current);
 			if(!path.contains(current)){
 				path.add(current);
 			}
-			// choose road - the first set of edges that satisfies the requirements: contain current as inEdge;
-			// delete the edge taken from the list;
-			// the second node in the edge taken is the new current node;
-			for(int i=0;i<allEdges.size();i++){
-				if(allEdges.get(i).get(0)==current){
-					current = allEdges.get(i).get(1);
-					allEdges.remove(allEdges.get(i));
+			// choose next current:
+			ArrayList<Node> currentAdjasent = nodeMap.get(current);
+			int thereis = 0;
+			for(int i=0;i<currentAdjasent.size();i++){
+				if(currentAdjasent.get(i) is outnode and it is not visited){ // PROBLEM: check whether it is outnode
+					mark it as current;
+					thereis = 1;
 					break;
 				}
 			}
+			if(thereis==0){
+				move one stage up;
+				go to other untaken road and choose other outnode as current;
+			}
+			
+			
 		}		
 		return path;
 	}

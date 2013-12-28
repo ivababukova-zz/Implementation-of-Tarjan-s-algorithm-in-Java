@@ -4,16 +4,18 @@ import java.util.ArrayList;
 public class Node{
 
 	protected ArrayList<Node> outnodes = new ArrayList<>();
-	protected ArrayList<Node> innodes = new ArrayList<>();
-	public Node(){}
-	public void setInnodes(ArrayList<Node> innodes){
-		this.innodes = innodes;
-	}
 	public void setOutnodes(ArrayList<Node> outnodes){
 		this.outnodes = outnodes;
 	}
-	public ArrayList<Node> getInnodes(ArrayList<Node> innodes){
-		return this.innodes = innodes;
+	public Node(ArrayList<Node> outnodes){
+		this.outnodes = outnodes;
+	}
+	public boolean isItOutnode(Node node){
+		boolean returned = false;
+		if(this.outnodes.contains(node)){
+			returned = true;
+		}
+		return returned;
 	}
 	public ArrayList<Node> getOutnodes(ArrayList<Node> outnodes){
 		return this.outnodes = outnodes;
