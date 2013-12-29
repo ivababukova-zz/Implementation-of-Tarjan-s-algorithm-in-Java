@@ -1,42 +1,25 @@
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
+import java.util.HashMap;
+import java.util.Set;
 
-public class DepthFirstSearch extends Graph{
-	
-	protected ArrayList<ArrayList<String>> graph = new ArrayList<ArrayList<String>>();
-	protected ArrayList<String> vertices = new ArrayList<String>();
-
-	public DepthFirstSearch(){
-		this.graph = graph;
-		this.vertices = vertices;
-	}
-	
-	public void setGraph(ArrayList<ArrayList<String>> graph){
-		this.graph = graph;
-	}
-	
-	public void setVertices(ArrayList<String> vertices){
-		this.vertices = vertices;
-	}
-	
-	/**def dfs_rec(graph,start,path):
-    path = path + [start]
-    for edge in graph[start]: 
-        if edge not in path:
-            path = dfs_rec(graph, edge,path)
-    print start
-    return path
-**/
-	public List<String> dfs(ArrayList<ArrayList<String>> graph, String startNode, List<String> path){
-		path.add(startNode);
-		for(int i=0;i<vertices.size();i++){
-			if(!path.contains(vertices.get(i))){
-				path = dfs(graph,startNode,path);
+public class DepthFirstSearch {
+	public ArrayList<Node> dfs(Node startNode, ArrayList<Node> nodes, ArrayList<Node> predecesors){
+		ArrayList<Node> visited = new ArrayList<>(); // arraylist of all visited nodes
+		ArrayList<Node> path = new ArrayList<Node>(); 
+		Node current = startNode; // the node we are at the moment
+		while((visited.size())!=(nodes.size())){
+			if(!path.contains(current)){
+				path.add(current);
+				visited.add(current); // mark current as visited
 			}
-		}
-		System.out.println("Starting node: " + startNode);
+			// search for next current node;
+			for(int i=0;i<nodes.size();i++){
+				if((predecesors.get(i)==current)&&(!visited.contains(predecesors.get(i)))){
+					current = nodes.get(i);
+					break;
+				}
+			}
+		}	
 		return path;
-		
 	}
 }

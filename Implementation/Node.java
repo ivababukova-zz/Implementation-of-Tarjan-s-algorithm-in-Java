@@ -1,23 +1,26 @@
 import java.util.ArrayList;
+import java.util.HashMap;
 
 // class that represents nodes in a graph
 public class Node{
-
-	protected ArrayList<Node> outnodes = new ArrayList<>();
-	public void setOutnodes(ArrayList<Node> outnodes){
-		this.outnodes = outnodes;
+	protected ArrayList<Node> nodes = new ArrayList<>();
+	protected ArrayList<Node> predecesors = new ArrayList<>();
+	
+	public Node(Node node, Node predecesor){
+		this.predecesors.add(predecesor);
+		this.nodes.add(node);
 	}
-	public Node(ArrayList<Node> outnodes){
-		this.outnodes = outnodes;
+	
+	public void setPredecesors(ArrayList<Node> predecesors){
+		this.predecesors=predecesors;
 	}
-	public boolean isItOutnode(Node node){
-		boolean returned = false;
-		if(this.outnodes.contains(node)){
-			returned = true;
-		}
-		return returned;
+	public void setNodes(ArrayList<Node> nodes){
+		this.nodes=nodes;
 	}
-	public ArrayList<Node> getOutnodes(ArrayList<Node> outnodes){
-		return this.outnodes = outnodes;
+	public ArrayList<Node> getNodes(){
+		return this.nodes;
+	}
+	public ArrayList<Node> getPredecesors(){
+		return this.predecesors;
 	}
 }
