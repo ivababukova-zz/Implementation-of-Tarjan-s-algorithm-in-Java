@@ -3,24 +3,19 @@ import java.util.HashMap;
 
 // class that represents nodes in a graph
 public class Node{
-	protected ArrayList<Node> nodes = new ArrayList<>();
-	protected ArrayList<Node> predecesors = new ArrayList<>();
+	protected ArrayList<Node> neighbours = new ArrayList<>();
 	
-	public Node(Node node, Node predecesor){
-		this.predecesors.add(predecesor);
-		this.nodes.add(node);
+	public Node(ArrayList<Node> neighbours){
+		for(int i=0;i<neighbours.size();i++){
+			this.neighbours.add(neighbours.get(i));
+		}
 	}
-	
-	public void setPredecesors(ArrayList<Node> predecesors){
-		this.predecesors=predecesors;
+	public Node(){}
+	public void setNeighbours(ArrayList<Node> neighbours){
+	    this.neighbours.clear();
+	    this.neighbours.addAll(neighbours);
 	}
-	public void setNodes(ArrayList<Node> nodes){
-		this.nodes=nodes;
-	}
-	public ArrayList<Node> getNodes(){
-		return this.nodes;
-	}
-	public ArrayList<Node> getPredecesors(){
-		return this.predecesors;
+	public ArrayList<Node> getNeighbours(){
+		return this.neighbours;
 	}
 }
