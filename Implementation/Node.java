@@ -7,9 +7,17 @@ public class Node{
 	protected static int counter = 0;     
 	protected int myCounter;
 	
+	protected static int counter = 0;	
+	
+	protected int myCounter;
+
 	public Node(ArrayList<Node> neighbours){
 		myCounter = counter;
+<<<<<<< HEAD
         counter++;
+=======
+		counter++;
+>>>>>>> 56004b117f56f9bbf9dec7548e41a18077205b30
 		for(int i=0;i<neighbours.size();i++){
 			this.neighbours.add(neighbours.get(i));
 		}
@@ -26,7 +34,20 @@ public class Node{
 		return this.getNeighbours().get(neighbours.indexOf(node));
 	}
 	//@Override
+<<<<<<< HEAD
     public String toString(){
         return Integer.toString(myCounter);
 }
+=======
+	public String toString(){
+		return Integer.toString(myCounter);
+	}
+	public String toString(int index){		
+		ArrayList<String> s = new ArrayList<>();
+		for(int i=0;i<this.neighbours.size();i++){
+			s.add(""+neighbours.get(i));
+		}
+		return s.get(index);
+	}
+>>>>>>> 56004b117f56f9bbf9dec7548e41a18077205b30
 }
