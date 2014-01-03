@@ -5,7 +5,13 @@ public class Node{
 	
 	protected ArrayList<Node> neighbours = new ArrayList<>();	
 	
+	protected static int counter = 0;	
+	
+	protected int myCounter;
+
 	public Node(ArrayList<Node> neighbours){
+		myCounter = counter;
+		counter++;
 		for(int i=0;i<neighbours.size();i++){
 			this.neighbours.add(neighbours.get(i));
 		}
@@ -22,6 +28,9 @@ public class Node{
 		return this.getNeighbours().get(neighbours.indexOf(node));
 	}
 	//@Override
+	public String toString(){
+		return Integer.toString(myCounter);
+	}
 	public String toString(int index){		
 		ArrayList<String> s = new ArrayList<>();
 		for(int i=0;i<this.neighbours.size();i++){
