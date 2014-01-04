@@ -61,7 +61,7 @@ public class DepthFirstSearch extends Node{
 			searchNextNode(current,path,path1);
 		}	
 	}
-	
+	/**
 	@Override
 	public String toString(int index){
 		ArrayList<String> s = new ArrayList<>();
@@ -70,4 +70,5 @@ public class DepthFirstSearch extends Node{
 		}
 		return s.get(index);
 	}
+	**/
 }

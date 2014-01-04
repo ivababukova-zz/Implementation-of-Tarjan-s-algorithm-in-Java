@@ -33,7 +33,7 @@ public class GraphRaw{
 		ArrayList<Node> all = new ArrayList<>();
 		all.add(node1); all.add(node2); all.add(node3); all.add(node4); all.add(node5);
 		all.add(node6); all.add(node7); all.add(node8);
-		System.out.println(node1.getNeighbours());
+		System.out.println(node8.getNeighbours());
 		//DepthFirstSearch dfs = new DepthFirstSearch(node1, all);
 		//System.out.println(dfs);
 	}
